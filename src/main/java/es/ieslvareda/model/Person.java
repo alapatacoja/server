@@ -56,6 +56,6 @@ public class Person {
                 ", nombre='" + nombre + '\'' +
                 ", apellidos='" + apellidos + '\'' +
                 ", edad=" + edad +
-                '}';
+                "}\n";
     }
 }
