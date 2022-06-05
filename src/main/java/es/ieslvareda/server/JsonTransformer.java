@@ -1,4 +1,4 @@
-package es.ieslvareda.server.model;
+package es.ieslvareda.server;
 
 import com.google.gson.Gson;
 import spark.ResponseTransformer;

@@ -1,10 +1,10 @@
 package es.ieslvareda.server.controllers;
 
 import es.ieslvareda.model.Person;
-import es.ieslvareda.model.Result;
+import es.ieslvareda.server.Result;
 import es.ieslvareda.server.model.IPersonService;
 import es.ieslvareda.server.model.ImpPersonService;
-import es.ieslvareda.server.model.JsonTransformer;
+import es.ieslvareda.server.JsonTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;

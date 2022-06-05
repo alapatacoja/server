@@ -11,12 +11,11 @@ public class MyConfig {
     private static MyConfig instance;
     private final String DEFAULT_PROPERTIES = "default.properties";
     private final String CUSTOM_PROPERTIES = "custom.properties";
-    private Properties appProperties;
+    private Properties myProperties;
 
     private MyConfig(){
 
         Properties defaultProperties = new Properties();
-
         try(FileInputStream fis = new FileInputStream(DEFAULT_PROPERTIES)){
 
             defaultProperties.load(fis);
@@ -27,11 +26,11 @@ public class MyConfig {
             e.printStackTrace();
         }
 
-        appProperties = new Properties(defaultProperties);
+        myProperties=new Properties(defaultProperties);
 
         try(FileInputStream fis = new FileInputStream(CUSTOM_PROPERTIES)){
 
-            appProperties.load(fis);
+            myProperties.load(fis);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -39,59 +38,44 @@ public class MyConfig {
             e.printStackTrace();
         }
 
-    }
-    private void save(){
-        try(FileOutputStream fos = new FileOutputStream(CUSTOM_PROPERTIES)){
-
-            appProperties.store(fos,"UTF-8");
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public static MyConfig getInstance(){
-        if(instance==null)
+        if (instance==null){
             instance = new MyConfig();
-
+        }
         return instance;
     }
 
-    public String getUsername(){
-        return appProperties.getProperty("USERNAME");
-    }
-    public void setUsername(String username){
-        appProperties.setProperty("USERNAME",username);
-        save();
-    }
-    public String getPassword(){
-        return appProperties.getProperty("PASSWORD");
-    }
-    public String getDBHost(){
-        return appProperties.getProperty("DB_HOST");
-    }
-    public String getDBPort(){
-        return appProperties.getProperty("DB_PORT");
-    }
-    public String getDBSchema(){
-        return appProperties.getProperty("DB_SCHEMA");
+    public String getDBURL() {
+        return myProperties.getProperty("MYSQL_DB_URL");
     }
 
-    public String getOracleDBHost() {
-        return appProperties.getProperty("ORACLE_DB_HOST");
+    public String getDBUSer() {
+        return myProperties.getProperty("MYSQL_DB_USERNAME");
     }
 
-    public String getOracleDBPort() {
-        return appProperties.getProperty("ORACLE_DB_PORT");
+    public String getDBPassword() {
+        return myProperties.getProperty("MYSQL_DB_PASSWORD");
     }
 
-    public String getOracleUsername() {
-        return appProperties.getProperty("ORACLE_USERNAME");
+
+    public String getOracleDBHost(){
+        return myProperties.getProperty("ORACLE_DB_HOST");
     }
 
-    public String getOraclePassword() {
-        return appProperties.getProperty("ORACLE_PASSWORD");
+    public String getORACLEUSer() {
+        return myProperties.getProperty("ORACLE_DB_USERNAME");
     }
+
+    public String getORACLEPassword() {
+        return myProperties.getProperty("ORACLE_DB_PASSWORD");
+    }
+
+    public String getOracleDBPort(){
+        return myProperties.getProperty("ORACLE_DB_PORT");
+    }
+
+
+
 }

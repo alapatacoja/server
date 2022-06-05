@@ -2,10 +2,10 @@ package es.ieslvareda.server.controllers;
 
 import es.ieslvareda.model.AuthenticateData;
 import es.ieslvareda.model.Empleado;
-import es.ieslvareda.model.Result;
+import es.ieslvareda.server.Result;
 import es.ieslvareda.server.model.IEmpleadoService;
 import es.ieslvareda.server.model.ImpEmpleadoService;
-import es.ieslvareda.server.model.JsonTransformer;
+import es.ieslvareda.server.JsonTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;

@@ -1,8 +1,8 @@
 package es.ieslvareda.server.model;
 
-import es.ieslvareda.model.MyDataSource;
 import es.ieslvareda.model.Person;
-import es.ieslvareda.model.Result;
+import es.ieslvareda.model.db.MyDataSource;
+import es.ieslvareda.server.Result;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -17,7 +17,7 @@ public class ImpPersonService implements IPersonService {
     public List<Person> getAll() {
 
         List<Person> personList = new ArrayList<>();
-        DataSource dataSource = MyDataSource.getMyMariaDBDataSource();
+        DataSource dataSource = MyDataSource.getMariaDBDataSource();
 
         try(Connection con = dataSource.getConnection();
             Statement statement = con.createStatement();
@@ -51,7 +51,7 @@ public class ImpPersonService implements IPersonService {
     public Result<Person> get(String dni) {
 
 
-        DataSource dataSource = MyDataSource.getMyMariaDBDataSource();
+        DataSource dataSource = MyDataSource.getMariaDBDataSource();
 
         try(Connection con = dataSource.getConnection();
             Statement statement = con.createStatement();
@@ -97,7 +97,7 @@ public class ImpPersonService implements IPersonService {
 
     @Override
     public Result<Person> add(Person person) {
-        DataSource ds = MyDataSource.getMyMariaDBDataSource();
+        DataSource ds = MyDataSource.getMariaDBDataSource();
 
         try(Connection con = ds.getConnection();
             Statement statement = con.createStatement();) {

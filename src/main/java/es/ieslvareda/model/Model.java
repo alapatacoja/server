@@ -1,6 +1,7 @@
 package es.ieslvareda.model;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import es.ieslvareda.model.db.MyDataSource;
 import es.ieslvareda.properties.MyConfig;
 
 import javax.sql.DataSource;
@@ -14,7 +15,7 @@ public class Model {
     public List<Person> getPersons(){
 
         List<Person> personList = new ArrayList<>();
-        DataSource dataSource = MyDataSource.getMyMariaDBDataSource();
+        DataSource dataSource = MyDataSource.getMariaDBDataSource();
 
         try(Connection con = dataSource.getConnection();
             Statement statement = con.createStatement();
@@ -46,7 +47,7 @@ public class Model {
     }
     public Person addPerson(Person person){
 
-        DataSource ds = MyDataSource.getMyMariaDBDataSource();
+        DataSource ds = MyDataSource.getMariaDBDataSource();
 
         try(Connection con = ds.getConnection();
         Statement statement = con.createStatement();) {
@@ -61,7 +62,7 @@ public class Model {
         return person;
     }
     public int updatePerson(Person person){
-        DataSource ds = MyDataSource.getMyMariaDBDataSource();
+        DataSource ds = MyDataSource.getMariaDBDataSource();
         int count = 0 ;
         try(Connection con = ds.getConnection();
             Statement statement = con.createStatement();) {
@@ -78,7 +79,7 @@ public class Model {
     }
     public int deletePerson(String dni){
 
-        DataSource ds = MyDataSource.getMyMariaDBDataSource();
+        DataSource ds = MyDataSource.getMariaDBDataSource();
         int count = 0 ;
         String sql = "DELETE FROM person WHERE dni=?";
 
@@ -100,7 +101,7 @@ public class Model {
     public List<Empleado> getEmpleados(){
 
         List<Empleado> empleados = new ArrayList<>();
-        try(Connection con = MyDataSource.getMyOracleDataSource().getConnection();
+        try(Connection con = MyDataSource.getmyOracleDataSource().getConnection();
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT NOMBRE FROM EMPLEADO")) {
 
@@ -121,7 +122,7 @@ public class Model {
                     "EMAIL='"+email+"' AND "+
                     "PASSWORD=ENCRYPT_PASWD.encrypt_val('"+password+"')";
 
-        DataSource ds = MyDataSource.getMyOracleDataSource();
+        DataSource ds = MyDataSource.getmyOracleDataSource();
 
         try(Connection con = ds.getConnection();
             Statement stmt = con.createStatement();

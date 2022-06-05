@@ -2,8 +2,8 @@ package es.ieslvareda.server.model;
 
 import es.ieslvareda.model.AuthenticateData;
 import es.ieslvareda.model.Empleado;
-import es.ieslvareda.model.MyDataSource;
-import es.ieslvareda.model.Result;
+import es.ieslvareda.model.db.MyDataSource;
+import es.ieslvareda.server.Result;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class ImpEmpleadoService implements IEmpleadoService{
         String sql = "SELECT * FROM EMPLEADO WHERE " +
                 "EMAIL=? AND PASSWORD=ENCRYPT_PASWD.encrypt_val(?)";
 
-        try(Connection con = MyDataSource.getMyOracleDataSource().getConnection();
+        try(Connection con = MyDataSource.getmyOracleDataSource().getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql)){
 
             int pos = 0;
